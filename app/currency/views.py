@@ -1,6 +1,8 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
 from currency.models import Rate, ContactUs
+
+
 # Create your views here.
 
 
@@ -20,3 +22,19 @@ def list_contactus(request):
         result.append(f'id: {contactus.id}, email: {contactus.email_from}, '
                       f'subject: {contactus.subject}, message: {contactus.message}<br>')
     return HttpResponse(str(result))
+
+
+def template_rates(request):
+    rates = Rate.objects.all()
+    context = {
+        'rates': rates
+    }
+    return render(request, 'rates_table.html', context)
+
+
+def template_contactus(request):
+    contactus = ContactUs.objects.all()
+    context = {
+        'contactus': contactus
+    }
+    return render(request, 'contactus_table.html', context)
