@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from currency.views import list_rates, list_contactus
+from currency.views import list_rates, list_contactus, template_rates, template_contactus
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rate/list/', list_rates),
-    path('contactus/list', list_contactus)
+    path('contactus/list', list_contactus),
+    path('template/rates', template_rates),
+    path('template/contactus', template_contactus),
 ]

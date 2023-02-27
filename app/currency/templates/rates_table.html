@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Rates
+{% endblock title%}
+
+{% block content %}
+<table>
+    <tr>
+        <th>id</th><th>buy</th><th>sell</th><th>currency</th><th>created</th>
+    </tr>
+
+    {% for rate in rates %}
+    <tr>
+        <td>{{rate.id}}</td>
+        <td>{{rate.buy}}</td>
+        <td>{{rate.sell}}</td>
+        <td>{{rate.currency}}</td>
+        <td>{{rate.created}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
