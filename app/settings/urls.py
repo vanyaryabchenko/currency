@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from currency.views import list_rates, list_contactus, template_rates, template_contactus
+from currency.views import list_rates, list_contactus, template_rates, template_contactus, template_source, \
+    source_create, source_update, source_delete, source_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,9 @@ urlpatterns = [
     path('contactus/list', list_contactus),
     path('template/rates', template_rates),
     path('template/contactus', template_contactus),
+    path('template/source', template_source),
+    path('source/create', source_create),
+    path('source/update/<int:pk>', source_update),
+    path('source/delete/<int:pk>', source_delete),
+    path('source/details/<int:pk>', source_details),
 ]
