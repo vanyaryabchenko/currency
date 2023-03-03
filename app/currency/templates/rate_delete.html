@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Update Source
+    Delete Rate
 {% endblock title%}
 
 {% block content %}
-    Update Source Form
+    Delete Rate with id = {{ rate.id }}?
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">Delete</button>
     </form>
 {% endblock content %}

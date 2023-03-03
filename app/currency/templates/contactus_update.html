@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Update Source
+    Update Contact
 {% endblock title%}
 
 {% block content %}
-    Update Source Form
+    Update Contact Form
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
