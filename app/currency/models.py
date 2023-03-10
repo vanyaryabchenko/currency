@@ -26,3 +26,9 @@ class Source(models.Model):
 
     def __str__(self):
         return f'SOURCE URL: {self.source_url}    NAME: {self.name}'
+
+
+class RequestResponseLog(models.Model):
+    path = models.CharField(max_length=128)
+    request_method = models.CharField(max_length=4)
+    time = models.PositiveIntegerField()
