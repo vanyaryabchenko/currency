@@ -26,5 +26,3 @@ class UserActivateView(RedirectView):
             user.save(updated_fields=['is_active'])
         url = super().get_redirect_url(*args, **kwargs)
         return url
-
-
