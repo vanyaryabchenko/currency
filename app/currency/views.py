@@ -11,7 +11,7 @@ from currency.models import Rate, ContactUs, Source
 # Create your views here.
 class RateListView(ListView):
     template_name = 'rate_table.html'
-    queryset = Rate.objects.all()
+    queryset = Rate.objects.all().select_related('source')
 
 
 class RateCreateView(CreateView):

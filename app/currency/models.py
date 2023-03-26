@@ -8,7 +8,7 @@ class Rate(models.Model):
     currency = models.PositiveSmallIntegerField(choices=RateCurrencyChoices.choices)
     buy = models.DecimalField(max_digits=6, decimal_places=2)
     sell = models.DecimalField(max_digits=6, decimal_places=2)
-    source = models.CharField(max_length=25)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Currency: {self.get_currency_display()}, Buy: {self.buy}, Sell:{self.sell}'
@@ -25,7 +25,7 @@ class Source(models.Model):
     name = models.CharField(max_length=64)
 
     def __str__(self):
-        return f'SOURCE URL: {self.source_url}    NAME: {self.name}'
+        return f'{self.name}'
 
 
 class RequestResponseLog(models.Model):
