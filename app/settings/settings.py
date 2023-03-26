@@ -47,7 +47,8 @@ EXTERNAL_APPS = [
 ]
 
 INTERNAL_APPS = [
-    'currency'
+    'currency',
+    'account'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS
@@ -141,6 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+DEFAULT_FROM_EMAIL = 'support@example.com'
 
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 
@@ -148,6 +150,11 @@ LOGIN_URL = reverse_lazy('login')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
+AUTH_USER_MODEL = 'account.User'
+
+
+HOST = 'localhost:8000'
+HTTP_SCHEMA = 'http'
 
 if DEBUG:
     import socket  # only if you haven't already imported this
