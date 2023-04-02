@@ -5,7 +5,9 @@
 {% endblock title%}
 
 {% block content %}
+
 ID: {{ source.id }}<br>
+<img src="{{object.source_image_url}}" width="100" height="100"><br>
 name: {{ source.name }}<br>
 URL: {{ source.source_url }}<br>
 {% endblock content %}

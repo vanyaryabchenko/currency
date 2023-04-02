@@ -6,13 +6,22 @@
 
 {% block content %}
     <a href="{% url 'currency:rate-create' %}">Create Rate</a>
-<table>
+<table class="table table-striped">
+    <thead>
     <tr>
-        <th>id</th><th>buy</th><th>sell</th><th>source</th><th>currency</th><th>created</th>
+        <th scope="col">#</th>
+        <th scope="col">id</th>
+        <th scope="col">buy</th>
+        <th scope="col">sell</th>
+        <th scope="col">source</th>
+        <th scope="col">currency</th>
+        <th scope="col">created</th>
     </tr>
-
+    </thead>
+<tbody>
     {% for rate in object_list %}
     <tr>
+        <th scope="row">{{forloop.counter}}</th>
         <td>{{rate.id}}</td>
         <td>{{rate.buy}}</td>
         <td>{{rate.sell}}</td>
@@ -30,5 +39,6 @@
         {% endif %}
     </tr>
     {% endfor %}
+    </tbody>
 </table>
 {% endblock content %}
