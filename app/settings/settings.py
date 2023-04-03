@@ -44,6 +44,8 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     'django_extensions',
     "debug_toolbar",
+    'crispy_forms',
+    "crispy_bootstrap5",
 ]
 
 INTERNAL_APPS = [
@@ -135,6 +137,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR.parent / 'static_content' / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -155,6 +162,10 @@ AUTH_USER_MODEL = 'account.User'
 
 HOST = 'localhost:8000'
 HTTP_SCHEMA = 'http'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 if DEBUG:
     import socket  # only if you haven't already imported this

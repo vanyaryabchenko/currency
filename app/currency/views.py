@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
@@ -126,16 +126,3 @@ class SourceDetailsView(DetailView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-
-
-class ProfileView(LoginRequiredMixin, UpdateView):
-    template_name = 'registration/profile.html'
-    success_url = reverse_lazy('index')
-    queryset = get_user_model().objects.all()
-    fields = (
-        'first_name',
-        'last_name'
-    )
-
-    def get_object(self, queryset=None):
-        return self.request.user

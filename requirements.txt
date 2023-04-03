@@ -3,6 +3,8 @@ django-extensions==3.2.1
 ipython
 Jinja2
 django-debug-toolbar
+django-crispy-forms
+crispy-bootstrap5
 
 #flake8
 flake8
