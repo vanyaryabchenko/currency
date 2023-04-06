@@ -12,7 +12,7 @@
         <th scope="col">#</th>
         <th scope="col">id</th>
         <th scope="col">buy</th>
-        <th scope="col">sell</th>
+        <th scope="col">sale</th>
         <th scope="col">source</th>
         <th scope="col">currency</th>
         <th scope="col">created</th>
@@ -24,8 +24,8 @@
         <th scope="row">{{forloop.counter}}</th>
         <td>{{rate.id}}</td>
         <td>{{rate.buy}}</td>
-        <td>{{rate.sell}}</td>
-        <td>{{rate.source}}</td>
+        <td>{{rate.sale}}</td>
+        <td>{{rate.source.name}}</td>
         <td>{{rate.get_currency_display}}</td>
         <td>{{rate.created}}</td>
         {% if request.user.is_superuser %}

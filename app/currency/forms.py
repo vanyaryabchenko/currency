@@ -19,7 +19,7 @@ class RateForm(forms.ModelForm):
         fields = (
             'currency',
             'buy',
-            'sell',
+            'sale',
             'source'
         )
 
