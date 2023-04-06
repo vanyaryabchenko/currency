@@ -2,7 +2,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
 
 from currency.forms import SourceForm, RateForm, ContactUsForm
 from currency.models import Rate, ContactUs, Source
@@ -61,15 +60,9 @@ class ContactUsCreateView(CreateView):
         subject: {self.object.subject}
         message: {self.object.message}
         '''
-        recipient = 'support@gmail.com'
 
-        send_mail(
-            subject,
-            message,
-            self.object.email_from,
-            [recipient],
-            fail_silently=False,
-        )
+        from currency.tasks import send_mail
+        send_mail.delay(subject, message)
 
     def form_valid(self, form):
         redirect = super().form_valid(form)
