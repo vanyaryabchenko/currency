@@ -38,7 +38,8 @@ class Migration(migrations.Migration):
                 ('source_url', models.URLField(max_length=255)),
                 ('name', models.CharField(max_length=64)),
                 ('code_name', models.CharField(max_length=64, unique=True)),
-                ('image', models.FileField(blank=True, default=None, null=True, upload_to=currency.models.source_image_path)),
+                ('image', models.FileField(blank=True, default=None, null=True,
+                                           upload_to=currency.models.source_image_path)),
             ],
         ),
         migrations.CreateModel(
