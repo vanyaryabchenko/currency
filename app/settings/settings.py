@@ -174,9 +174,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 CELERY_BROKER_URL = 'amqp://localhost'
 
 CELERY_BEAT_SCHEDULE = {
-    'debug': {
+    'parse_privat': {
         'task': 'currency.tasks.parse_privatbank',
         'schedule': crontab(minute='*/1')
+    },
+    'parse_mono': {
+        'task': 'currency.tasks.parse_monobank',
+        'schedule': crontab(minute='*/2')
     }
 }
 if DEBUG:
