@@ -6,6 +6,8 @@ Jinja2
 django-debug-toolbar
 django-crispy-forms
 crispy-bootstrap5
+requests
+
 
 #flake8
 flake8
