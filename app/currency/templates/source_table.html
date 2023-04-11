@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}
     Source
 {% endblock title%}
 
 {% block content %}
-    <a href="{% url 'currency:source-create' %}">Create Source</a>
+    <a href="{% url 'currency:source-create' %}">Create Source</a><br>
+    <form method="get">
+        {{ filter.form|crispy }}
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
 <table>
     <tr>
         <th>id</th><th>name</th><th>URL</th>
@@ -22,4 +26,5 @@
     </tr>
     {% endfor %}
 </table>
+{% include 'includes/paginator.html' %}
 {% endblock content %}

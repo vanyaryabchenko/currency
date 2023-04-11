@@ -5,6 +5,7 @@ ipython
 Jinja2
 django-debug-toolbar
 django-crispy-forms
+django-filter
 crispy-bootstrap5
 requests
 
