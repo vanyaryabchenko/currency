@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}
     Contact
 {% endblock title%}
 
 {% block content %}
     <a href="{% url 'currency:contactus-create'%}">Create Contact</a>
+    <form method="get">
+        {{ filter.form|crispy }}
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
 <table>
     <tr>
         <th>id</th><th>email_from</th><th>subject</th><th>message</th>
@@ -23,4 +27,5 @@
     </tr>
     {% endfor %}
 </table>
+{% include 'includes/paginator.html' %}
 {% endblock content %}
