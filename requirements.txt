@@ -6,6 +6,9 @@ Jinja2
 django-debug-toolbar
 django-crispy-forms
 django-filter
+djangorestframework
+djangorestframework-simplejwt
+drf-yasg
 crispy-bootstrap5
 requests
 
