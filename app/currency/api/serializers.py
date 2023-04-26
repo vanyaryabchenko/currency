@@ -23,6 +23,7 @@ class SourceSerializer(serializers.ModelSerializer):
             'id',
             'source_url',
             'name',
+            'code_name',
         )
 
 
