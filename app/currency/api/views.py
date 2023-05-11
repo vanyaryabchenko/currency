@@ -1,6 +1,5 @@
-
 from django_filters import rest_framework as filters
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
 from rest_framework import filters as rest_framework_filters
 
 from currency.api.serializers import RateSerializer, SourceSerializer, ContactUsSerializer
@@ -18,7 +17,7 @@ class RateViewSet(viewsets.ModelViewSet):
     ordering_fields = ('id', 'created', 'buy', 'sale')
 
 
-class SourceListView(generics.ListAPIView):
+class SourceViewSet(viewsets.ModelViewSet):
     queryset = Source.objects.all()
     serializer_class = SourceSerializer
 
