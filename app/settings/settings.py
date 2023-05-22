@@ -15,6 +15,9 @@ from pathlib import Path
 from celery.schedules import crontab
 from django.urls import reverse_lazy
 
+from environ import environ
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +29,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0lu3vo1k6v*3=rgxo1w17)h+o7!a@%288g@5o_2i3d#!_#spx='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+)
+
+environ.Env.read_env(os.path.join(BASE_DIR.parent, '.env'))
+
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -99,13 +109,23 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env.str('POSTGRES_DB', 'currency-db'),
+        'USER': env.str('POSTGRES_USER'),
+        'PASSWORD': env.str('POSTGRES_PASSWORD'),
+        'HOST': env.str('POSTGRES_HOST', 'localhost'),
+        'PORT': env.str('POSTGRES_PORT', '5432'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -144,6 +164,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR.parent / 'static_content' / 'static'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR.parent / 'static_content' / 'media'
@@ -175,7 +196,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Celery
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://{0}:{1}@{2}:{3}//'.format(
+    env.str('RABBITMQ_DEFAULT_USER', 'guest'),
+    env.str('RABBITMQ_DEFAULT_PASS', 'guest'),
+    env.str('RABBITMQ_DEFAULT_HOST', '127.0.0.1'),
+    env.str('RABBITMQ_DEFAULT_PORT', '5672')
+)
 
 CELERY_BEAT_SCHEDULE = {
     'parse_privat': {

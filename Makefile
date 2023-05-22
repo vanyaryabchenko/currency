@@ -1,5 +1,5 @@
 
-manage_py := python app/manage.py
+manage_py := docker compose exec -it backend python app/manage.py
 
 run:
 	$(manage_py) runserver
@@ -23,4 +23,7 @@ beat:
 	cd app && celery -A settings beat -l info
 
 pytest:
-	pytest app/tests
+	docker exec -it backend pytest app/tests
+
+gunicorn:
+	cd app && gunicorn --workers 4 settings.wsgi --max-requests 10000 --log-level info --bind 0.0.0.0:8000

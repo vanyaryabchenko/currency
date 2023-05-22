@@ -1,4 +1,5 @@
 Celery
+flower
 Django==4.1.6
 django-extensions==3.2.1
 ipython
@@ -8,6 +9,7 @@ django-crispy-forms
 django-filter
 djangorestframework
 djangorestframework-simplejwt
+django-environ
 drf-yasg
 crispy-bootstrap5
 requests
@@ -21,3 +23,6 @@ flake8-print
 pytest
 pytest-django
 pytest-mock
+
+gunicorn
+psycopg2
